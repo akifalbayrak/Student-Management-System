@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="index.js" defer></script>
+  <title>Student Management System</title>
+</head>
+
+<body>
+  <header>
+    <h3>Student Management System</h3>
+  </header>
+  <main>
+    <section>
+      <article>
+        <form id="search-student" action="">
+          <input id="search-bar" type="number" min="0" placeholder="Student ID" />
+          <input type="submit" value="Search" />
+        </form>
+      </article>
+
+    </section>
+    <section>
+      <article>
+
+        <button id="myBtn" class="button">Adding Course</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <article>
+              <form id="add-course">
+                <input type="text" placeholder="Course Name" id="course-name" />
+                <div>
+                  <label for="base7">Base 7</label>
+                  <input type="radio" name="base" value="7" id="base7" />
+                </div>
+                <div>
+                  <label for="base10">Base 10</label>
+                  <input type="radio" name="base" value="10" id="base10" />
+                </div>
+                <input type="submit" value="Save" />
+              </form>
+            </article>
+          </div>
+
+        </div>
+      </article>
+
+    </section>
+    <section>
+      <article>
+        <select name="courses" id="courses">
+          <option id="empty-option">
+            Choose a Course
+          </option>
+        </select>
+      </article>
+    </section>
+    <section>
+      <article>
+        <form id="add-student">
+          <input id="ID" type="number" name="id" placeholder="Student ID" />
+          <input id="first-name" type="text" name="fName" placeholder="First Name" />
+          <input id="surname" type="text" name="lName" placeholder="Last Name" />
+          <input id="midterm-score" type="number" min="0" max="100" name="midterm" placeholder="Midterm" />
+          <input id="final-score" type="number" min="0" max="100" name="final" placeholder="Final" />
+          <input type="submit" value="Save" />
+        </form>
+      </article>
+    </section>
+    <aside>
+      <section>
+        <article>
+          <h4>Course Table</h4>
+          <table id="student-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Midterm</th>
+                <th>Final</th>
+                <th>Mark</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </article>
+        <article>
+          <h4>Course Detail Table</h4>
+          <table id="course-detail">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Course Name</th>
+                <th>Students Failed</th>
+                <th>Students Passed</th>
+                <th>Average</th>
+                <th>Base</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </article>
+        <section>
+          <article>
+            <label for="courses">Course Details</label>
+            <select name="courses" id="course-details">
+              <option value="all" id="all" selected>All Students</option>
+              <option value="passed" id="passed">Passed Students</option>
+              <option value="failed" id="failed">Failed Students</option>
+            </select>
+          </article>
+
+          <article>
+            <h4>Course Student Table</h4>
+            <table id="course-student-detail">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Surname</th>
+                  <th>Midterm</th>
+                  <th>Final</th>
+                  <th>Mark</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </article>
+        </section>
+        <article>
+          <h4>Student Table</h4>
+          <table id="course-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Course</th>
+                <th>Midterm</th>
+                <th>Final</th>
+                <th>Mark</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </article>
+      </section>
+
+    </aside>
+  </main>
+
+  <footer>Student Management System 2023</footer>
+</body>
+
+</html>
