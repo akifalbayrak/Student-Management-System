@@ -2,9 +2,16 @@ header {
   background-color: #f8f9fa;
   padding: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-header h3 {
-  color: #6c757d;
+header  {
+  /* color: #6c757d; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 25px;
 }
 
 section {
@@ -14,6 +21,7 @@ article {
   background-color: #f8f9fa;
   padding: 20px;
   border-radius: 5px;
+  margin: 20px 0 ;
 }
 form {
   display: flex;
@@ -21,30 +29,42 @@ form {
   align-items: center;
 }
 
-.button{
+button{
   width: 80%;
   display: block;
-  padding: 15px;
+  padding: 25px;
   margin: 20px auto;
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth scaling */
 }
-#search-bar {
-  flex-grow: 1;
+button:hover{
+  transform: scale(1.2); /* Scale the element to 120% when hovered */
+}
+#search-student{
+  display: flex;
+  flex-direction: row;
+}
+#search-bar,#course-name {
   margin-right: 10px;
+  padding: 15px;
+  border-radius: 10px;
 }
 #course-name, #base7, #base10 {
   background-color: #f8f9fa;
   color: #121212;
 }
-input[type="submit"] {
+input[type="submit"],.edit,.delete {
   background-color: #6c757d;
   color: #f8f9fa;
   border: none;
-  padding: 10px;
+  padding: 15px 40px;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 10px;
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth scaling */
 }
 input[type="submit"]:hover {
   background-color: #495057;
+  transform: scale(1.2); /* Scale the element to 120% when hovered */
 }
 #courses {
   width: 100%;
@@ -56,7 +76,6 @@ input[type="submit"]:hover {
   background-color: #f8f9fa;
   color: #121212;
   padding: 10px;
-  margin-bottom: 10px;
   border-radius: 5px;
 }
 
@@ -123,6 +142,7 @@ tr:hover {background-color: #f5f5f5;}
 footer {
   text-align: center;
 }
+
 
 @media (max-width: 1300px) {
   #add-student {

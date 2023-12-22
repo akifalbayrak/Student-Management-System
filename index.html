@@ -12,7 +12,8 @@
 
 <body>
   <header>
-    <h3>Student Management System</h3>
+    <img src="assets/logob-removebg-preview.png" alt="" srcset="">
+    <p>Student Management System</p>
   </header>
   <main>
     <section>
@@ -25,34 +26,22 @@
 
     </section>
     <section>
+
       <article>
-
-        <button id="myBtn" class="button">Adding Course</button>
-
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-
-          <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <article>
-              <form id="add-course">
-                <input type="text" placeholder="Course Name" id="course-name" />
-                <div>
-                  <label for="base7">Base 7</label>
-                  <input type="radio" name="base" value="7" id="base7" />
-                </div>
-                <div>
-                  <label for="base10">Base 10</label>
-                  <input type="radio" name="base" value="10" id="base10" />
-                </div>
-                <input type="submit" value="Save" />
-              </form>
-            </article>
+        <form id="add-course">
+          <input type="text" placeholder="Course Name" id="course-name" />
+          <div>
+            <label for="base7">Base 7</label>
+            <input type="radio" name="base" value="7" id="base7" checked />
           </div>
-
-        </div>
+          <div>
+            <label for="base10">Base 10</label>
+            <input type="radio" name="base" value="10" id="base10" />
+          </div>
+          <input type="submit" value="Save" />
+        </form>
       </article>
+
 
     </section>
     <section>
@@ -78,9 +67,19 @@
     </section>
     <aside>
       <section>
+
         <article>
-          <h4>Course Table</h4>
-          <table id="student-table">
+          <label for="courses">Course Details</label>
+          <select name="courses" id="course-details">
+            <option value="all" id="all" selected>All Students</option>
+            <option value="passed" id="passed">Passed Students</option>
+            <option value="failed" id="failed">Failed Students</option>
+          </select>
+        </article>
+
+        <article>
+          <h4>Course Student Table</h4>
+          <table id="course-student-detail">
             <thead>
               <tr>
                 <th>ID</th>
@@ -89,6 +88,7 @@
                 <th>Midterm</th>
                 <th>Final</th>
                 <th>Mark</th>
+                <th>Passed?</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -112,33 +112,6 @@
             <tbody></tbody>
           </table>
         </article>
-        <section>
-          <article>
-            <label for="courses">Course Details</label>
-            <select name="courses" id="course-details">
-              <option value="all" id="all" selected>All Students</option>
-              <option value="passed" id="passed">Passed Students</option>
-              <option value="failed" id="failed">Failed Students</option>
-            </select>
-          </article>
-
-          <article>
-            <h4>Course Student Table</h4>
-            <table id="course-student-detail">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Surname</th>
-                  <th>Midterm</th>
-                  <th>Final</th>
-                  <th>Mark</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </article>
-        </section>
         <article>
           <h4>Student Table</h4>
           <table id="course-table">

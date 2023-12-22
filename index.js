@@ -1,4 +1,67 @@
-let courseID = 1; //global course id
+const courses = []; // all courses
+const students = []; // all students
+
+const courses_json = [
+    {
+        id: 1,
+        courseName: "db",
+        base: 7,
+    },
+    {
+        id: 2,
+        courseName: "web",
+        base: 10,
+    },
+    { id: 3, courseName: "network", base: 7 },
+    { id: 4, courseName: "mining", base: 10 },
+    {
+        id: 5,
+        courseName: "chemistry",
+        base: 10,
+    },
+    {
+        id: 6,
+        courseName: "nlp",
+        base: 10,
+    },
+];
+// calculate the mark
+const calculateMark = (midterm, final, base) => {
+    const score = midterm * 0.4 + final * 0.6;
+    if (base == 10) {
+        if (score >= 90) {
+            return "A";
+        }
+        if (score >= 80) {
+            return "B";
+        }
+        if (score >= 70) {
+            return "C";
+        }
+        if (score >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
+    } else if (base == 7) {
+        if (score >= 93) {
+            return "A";
+        }
+        if (score >= 85) {
+            return "B";
+        }
+        if (score >= 77) {
+            return "C";
+        }
+        if (score >= 70) {
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+};
+
+let courseID = courses_json.length; //global course id
 let selectedStudent = null; //selected student for edit or delete
 let selectedCourse = null; //selected course from select input
 let foundStudent = null; //student that is found by search input
@@ -28,10 +91,12 @@ const allOption = document.getElementById("all"); // all details selector option
 const failedOption = document.getElementById("failed"); // failed students option
 const passedOption = document.getElementById("passed"); // passed students option
 const courseDetailsDiv = document.getElementById("course-details-div"); // course details div
+const baseVal = parseInt(
+    // base point
+    document.querySelector('input[name="base"]:checked')?.value || 10
+);
 let failedStudents = []; // failed students
 let passedStudents = []; // passed students
-const courses = []; // all courses
-const students = []; // all students
 
 /// EVENT LISTENERS
 
@@ -43,7 +108,6 @@ courseForm.addEventListener("submit", (event) => {
             // if course update handler function is triggered
             updateCourse(); // update the course
             updateCourseDetails();
-            updateStudentsViewTable(); // update the students table
             updateCourseStudentDetails(); // update course details table
             courseEdit = false; // set course editing state to false
         } else {
@@ -51,7 +115,6 @@ courseForm.addEventListener("submit", (event) => {
             addCourse(); // add the new course
             clearTable(studentDetailsTable); // clear course details table
             clearTable(courseDetailsTable); // clear course details table
-            clearTable(studentsViewTable); // clear students view table
             clearTable(courseStudentDetailsTable);
             showAlert("Kurs başarıyla eklendi");
         }
@@ -87,7 +150,6 @@ studentForm.addEventListener("submit", (event) => {
             selectedStudent = null;
         }
         updateCourseDetails(); // update course details
-        updateStudentsViewTable(); // update students view table
         updateCourseStudentDetails(); // update course details table
     } else {
         alert("Please fill all the neccessary fields");
@@ -108,7 +170,6 @@ studentSearchForm.addEventListener("submit", (event) => {
             clearTable(courseDetailsTable); // clear course details table
         } else {
             // if the student doesn't have any courses
-            clearTable(studentsViewTable); // clear students view table
             alert("This student doesn't have any courses");
         }
     } else {
@@ -123,12 +184,10 @@ courseSelector.addEventListener("change", (e) => {
     if (selectedCourse != null) {
         // if user selected a course
         updateCourseDetails();
-        updateStudentsViewTable(); // update the students table
         updateCourseStudentDetails(); // update course details table
     } else {
         // if user selected the empty option
         clearTable(courseDetailsTable); // clear course details table
-        clearTable(studentsViewTable); // clear students view table
     }
 });
 
@@ -151,13 +210,10 @@ courseDetailsSelect.addEventListener("change", () => {
 
 // course creating class
 class Course {
-    constructor(courseName) {
-        this.id = courseID; // unique course id
+    constructor(id, courseName, base) {
+        this.id = id; // unique course id
         this.courseName = courseName; // course name
-        this.base = parseInt(
-            // base point
-            document.querySelector('input[name="base"]:checked').value
-        );
+        this.base = base;
         this.students = []; // student ids who are taking the course
         let newOption = new Option(courseName, courseName); // create a new option with a name and value is equal to the course name
         courseSelector.add(newOption, undefined); // add the new option to the course selector
@@ -167,12 +223,16 @@ class Course {
 
 // course adding function
 const addCourse = () => {
-    const newCourse = new Course(courseNameInput.value); // create a new course
+    const newCourse = new Course(courseID, courseNameInput.value, baseVal); // create a new course
     selectedCourse = newCourse; // update the selected course
     courseID++; // increse the course id
     courses.push(newCourse); // push the new course to the courses list
 };
-
+courses_json.map((course) => {
+    let newCourse = new Course(course.id, course.courseName, course.base);
+    courses.push(newCourse);
+    emptyCourseOption.selected = true;
+});
 // student creating class
 class Student {
     constructor(id, firstName, surname, midterm, final) {
@@ -188,18 +248,16 @@ class Student {
                 mark: calculateMark(midterm, final, selectedCourse.base), // student's mark of the selected course
             },
         ];
-        addStudentView(
-            // add the newly created student to the student view table
-            this.id,
-            this.firstName,
-            this.surname,
-            this.takingCourses[0].midterm,
-            this.takingCourses[0].final,
-            this.takingCourses[0].mark
-        );
     }
 }
-
+const students_json = [
+    { id: 1, name: "akif", surname: "albayrak", midterm: 100, final: 100 },
+    { id: 2, name: "mete", surname: "albayrak", midterm: 100, final: 100 },
+    { id: 3, name: "beyza", surname: "albayrak", midterm: 100, final: 100 },
+    { id: 4, name: "mehmet", surname: "albayrak", midterm: 100, final: 100 },
+    { id: 5, name: "ülkü", surname: "albayrak", midterm: 100, final: 100 },
+    { id: 6, name: "ahmet", surname: "albayrak", midterm: 100, final: 100 },
+];
 // student adding function
 const addStudent = () => {
     // if student doesn't exists
@@ -242,7 +300,22 @@ const findStudent = (id) => {
         }
     }
 };
+students_json.map((student) => {
+    idInput.valueAsNumber = student.id;
+    firstNameInput.value = student.name;
+    surnameInput.value = student.surname;
+    midtermInput.valueAsNumber = student.midterm;
+    finalInput.valueAsNumber = student.final;
 
+    selectedCourse = findCourse(1);
+    addStudent();
+    idInput.value = null;
+    firstNameInput.value = null;
+    surnameInput.value = null;
+    midtermInput.value = null;
+    finalInput.value = null;
+    // Add the new Student object to the students array
+});
 /// TABLE CREATING FUNCTIONS
 
 // adding student details table function
@@ -273,27 +346,6 @@ const addStudentDetails = (
     markRow.innerHTML = mark;
 };
 
-// add students view table function
-const addStudentView = (id, firstName, surname, midterm, final, mark) => {
-    const tbody = studentsViewTable.getElementsByTagName("tbody")[0];
-    const row = tbody.insertRow(-1); // create a new row
-    const idRow = row.insertCell(); // create new cells
-    const nameRow = row.insertCell();
-    const surnameRow = row.insertCell();
-    const midtermRow = row.insertCell();
-    const finalRow = row.insertCell();
-    const markRow = row.insertCell();
-    const actionRow = row.insertCell();
-    idRow.innerHTML = id; // fill the new cells with the provided information
-    nameRow.innerHTML = firstName;
-    surnameRow.innerHTML = surname;
-    midtermRow.innerHTML = midterm;
-    finalRow.innerHTML = final;
-    markRow.innerHTML = mark;
-    actionRow.innerHTML = // create action buttons
-        "<a class='edit' onClick='studentEditHandler(this)'>Edit </a><a class='delete' onClick='studentDeleteHandler(this)'>Delete</a>";
-};
-
 // add course details function
 const addCourseDetails = (id, cName, failed, passed, average) => {
     const tbody = courseDetailsTable.getElementsByTagName("tbody")[0];
@@ -312,7 +364,7 @@ const addCourseDetails = (id, cName, failed, passed, average) => {
     averageRow.innerHTML = average;
     baseRow.innerHTML = selectedCourse.base;
     actionRow.innerHTML = // create action buttons
-        "<a class='edit' onClick='courseEditHandler(this)'>Edit </a><a class='delete' onClick='courseDeleteHandler(this)'>Delete</a>";
+        "<button class='edit' onClick='courseEditHandler(this)'>Edit </button><button class='delete' onClick='courseDeleteHandler(this)'>Delete</button>";
 };
 
 // add course student details function
@@ -322,7 +374,8 @@ const viewCourseStudentDetails = (
     surname,
     midterm,
     final,
-    mark
+    mark,
+    pass
 ) => {
     const tbody = courseStudentDetailsTable.getElementsByTagName("tbody")[0];
     const row = tbody.insertRow(-1); // create a new row
@@ -332,14 +385,18 @@ const viewCourseStudentDetails = (
     const midtermRow = row.insertCell();
     const finalRow = row.insertCell();
     const markRow = row.insertCell();
+    const passRow = row.insertCell();
+    const actionRow = row.insertCell();
     idRow.innerHTML = id; // fill the new cells with the provided information
     nameRow.innerHTML = firstName;
     surnameRow.innerHTML = surname;
     midtermRow.innerHTML = midterm;
     finalRow.innerHTML = final;
     markRow.innerHTML = mark;
+    passRow.innerHTML = pass;
+    actionRow.innerHTML = // create action buttons
+        "<button class='edit' onClick='studentEditHandler(this)'>Edit </button><button class='delete' onClick='studentDeleteHandler(this)'>Delete</button>";
 };
-
 /// EDIT, DELETE AND UPDATE HANDLERS
 
 // student edit handler
@@ -370,7 +427,6 @@ const studentDeleteHandler = (tr) => {
         }
     }
     selectedStudent = null; // set selected student to null
-    updateStudentsViewTable(); // update the students view table
     updateCourseStudentDetails(); // update course details table
 };
 
@@ -403,7 +459,6 @@ const courseDeleteHandler = (tr) => {
     }
     selectedCourse = null; // set selected coure to null
     clearTable(courseDetailsTable); // clear course details table
-    clearTable(studentsViewTable); // clear students view table
     courseSelector.options[courseSelector.selectedIndex].remove(); // remove the course from the course selector
 };
 
@@ -466,47 +521,17 @@ const addNewCourseToStudent = (student) => {
     selectedCourse.students.push(student.id); // add the student id to the selectec course list's students list
 };
 
-// update students view table
-const updateStudentsViewTable = () => {
-    clearTable(studentsViewTable); // clear students view table
-    let studentCount = selectedCourse.students.length;
-    for (let i = 0; i < studentCount; i++) {
-        // for every student that is taking the course
-        let student = findStudent(selectedCourse.students[i]); // assign the student
-        for (let j = 0; j < student.takingCourses.length; j++) {
-            // search through the student's courses
-            if (student.takingCourses[j].id == selectedCourse.id) {
-                // when the course ids are matching update the student's mark and add it to the table
-                let course = student.takingCourses[j];
-                course.mark = calculateMark(
-                    course.midterm,
-                    course.final,
-                    selectedCourse.base
-                );
-                addStudentView(
-                    student.id,
-                    student.firstName,
-                    student.surname,
-                    course.midterm,
-                    course.final,
-                    course.mark
-                );
-            }
-        }
-    }
-};
-
 // update course function
 const updateCourse = () => {
     selectedCourse.courseName = courseNameInput.value; // set the values that are provided by inputs
     selectedCourse.base = parseInt(
         document.querySelector('input[name="base"]:checked').value
     );
-    // update the selector option
-    courseSelector.options[courseSelector.selectedIndex].value =
-        selectedCourse.courseName;
-    courseSelector.options[courseSelector.selectedIndex].text =
-        selectedCourse.courseName;
+    // // update the selector option
+    // courseSelector.options[courseSelector.selectedIndex].value =
+    //     selectedCourse.courseName;
+    // courseSelector.options[courseSelector.selectedIndex].text =
+    //     selectedCourse.courseName;
 };
 
 // update the course details
@@ -599,7 +624,7 @@ const updateCourseStudentDetails = () => {
     let studentArray = [];
     clearTable(courseStudentDetailsTable);
     if (courseDetailsSelect.value == "all") {
-        studentArray = studentArray.concat(passedStudents,failedStudents)
+        studentArray = studentArray.concat(passedStudents, failedStudents);
     } else if (courseDetailsSelect.value == "failed") {
         // if the failed option selected
         studentArray = failedStudents;
@@ -618,7 +643,8 @@ const updateCourseStudentDetails = () => {
                 studentDetails.surname,
                 student.midterm,
                 student.final,
-                student.mark
+                student.mark,
+                student.mark != "F"
             );
         }
     }
@@ -691,67 +717,6 @@ const calculateGpa = (student) => {
             student.takingCourses[score].final * 0.6;
     }
     return parseFloat(((gpa /= student.takingCourses.length) / 25).toFixed(2));
-};
-
-// calculate the mark
-const calculateMark = (midterm, final, base) => {
-    const score = midterm * 0.4 + final * 0.6;
-    if (base == 10) {
-        if (score >= 90) {
-            return "A";
-        }
-        if (score >= 80) {
-            return "B";
-        }
-        if (score >= 70) {
-            return "C";
-        }
-        if (score >= 60) {
-            return "D";
-        } else {
-            return "F";
-        }
-    } else if (base == 7) {
-        if (score >= 93) {
-            return "A";
-        }
-        if (score >= 85) {
-            return "B";
-        }
-        if (score >= 77) {
-            return "C";
-        }
-        if (score >= 70) {
-            return "D";
-        } else {
-            return "F";
-        }
-    }
-};
-
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
-};
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-};
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
 };
 
 function showAlert(text) {
