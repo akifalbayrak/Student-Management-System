@@ -1,0 +1,229 @@
+header {
+  background-color: #96c2ee6e; /* Set the background color of the header */
+  padding: 20px; /* Add some padding around the content */
+  text-align: center; /* Center the text */
+  display: flex; /* Use flexbox layout */
+  flex-direction: row; /* Arrange the items horizontally */
+  justify-content: space-around; /* Distribute the space evenly between the items */
+  font-family: Arial, Helvetica, sans-serif; /* Set the font family */
+  font-weight: bold; /* Set the font weight */
+  font-style: italic; /* Set the font style */
+  font-size: 25px; /* Set the font size */
+  border-radius: 10px; /* Add rounded corners to the border */
+}
+
+section {
+  margin: 20px; /* Add some margin around the section */
+}
+
+article {
+  background-color: #f8f9fa; /* Set the background color of the article */
+  padding: 20px; /* Add some padding around the content */
+  border-radius: 5px; /* Add rounded corners to the border */
+  margin: 20px 0 ; /* Add some margin above and below the article */
+}
+
+form {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Distribute the space evenly between the items */
+  align-items: center; /* Align the items vertically */
+}
+
+.icon{
+  height: 50px; /* Set the height of the icon */
+}
+
+button{
+  width: 80%; /* Set the width of the button */
+  display: block; /* Display the button as a block element */
+  padding: 25px; /* Add some padding around the content */
+  margin: 20px auto; /* Add some margin above and below the button and center it horizontally */
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth scaling */
+}
+
+#add-course {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-evenly; /* Distribute the space evenly between the items */
+  padding: 20px; /* Add some padding around the content */
+}
+
+#add-student {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-evenly; /* Distribute the space evenly between the items */
+}
+
+#search-student,#search-student-byname{
+  display: flex; /* Use flexbox layout */
+  flex-direction: row; /* Arrange the items horizontally */
+  justify-content: space-evenly; /* Distribute the space evenly between the items */
+}
+
+#search-bar,#course-name,#search-bar-byname {
+  margin-right: 10px; /* Add some margin to the right of the input */
+  padding: 15px; /* Add some padding around the content */
+  border-radius: 10px; /* Add rounded corners to the border */
+}
+
+#course-name, #base7, #base10 {
+  background-color: #f8f9fa; /* Set the background color of the input and radio buttons */
+  color: #121212; /* Set the text color of the input and radio buttons */
+}
+
+input[type="submit"],.edit,.delete,button {
+  background-color: #6c757d; /* Set the background color of the buttons */
+  color: #f8f9fa; /* Set the text color of the buttons */
+  border: none; /* Remove the border of the buttons */
+  padding: 15px 40px; /* Add some padding around the content */
+  border-radius: 5px; /* Add rounded corners to the border */
+  cursor: pointer; /* Change the cursor to a pointer when hovering over the buttons */
+  transition: transform 0.3s ease-in-out; /* Add transition for smooth scaling */
+}
+
+input[type="submit"]:hover,button:hover {
+  background-color: #495057; /* Change the background color of the buttons when hovered */
+  transform: scale(1.1); /* Scale the element to 110% when hovered */
+}
+
+#courses {
+  width: 100%; /* Set the width of the select element */
+  padding: 10px; /* Add some padding around the content */
+  background-color: #f8f9fa; /* Set the background color of the select element */
+  color: #121212; /* Set the text color of the select element */
+}
+
+#ID, #first-name, #surname, #midterm-score, #final-score {
+  background-color: #f8f9fa; /* Set the background color of the input elements */
+  color: #121212; /* Set the text color of the input elements */
+  padding: 10px; /* Add some padding around the content */
+  border-radius: 5px; /* Add rounded corners to the border */
+}
+
+/* General table styles */
+table {
+  width: 100%; /* Set the width of the table */
+  border-collapse: collapse; /* Collapse the borders of the table cells */
+  text-align: center; /* Center the text in the table cells */
+}
+
+th, td {
+  padding: 15px; /* Add some padding around the content */
+  border-bottom: 1px solid #ddd; /* Add a bottom border to the table cells */
+}
+
+th {
+  background-color:rgb(126, 116, 191); /* Set the background color of the table headers */
+  color: white; /* Set the text color of the table headers */
+}
+
+tr:hover {background-color: #f5f5f5;} /* Change the background color of the table rows when hovered */
+
+/* Specific styles for each table */
+#student-table {
+  background-color: #f2f2f2; /* Set the background color of the student table */
+}
+
+#course-table {
+  background-color: #f9f9f9; /* Set the background color of the course table */
+}
+
+#course-detail {
+  background-color: #f2f2f2; /* Set the background color of the course detail table */
+}
+
+#course-student-detail {
+  background-color: #f9f9f9; /* Set the background color of the course student detail table */
+}
+
+#course-details {
+  width: 100%; /* Set the width of the select element */
+  padding: 10px; /* Add some padding around the content */
+  border: 1px solid #ddd; /* Add a border to the select element */
+  border-radius: 4px; /* Add rounded corners to the border */
+  background-color: #f9f9f9; /* Set the background color of the select element */
+}
+
+#course-details option {
+  padding: 10px; /* Add some padding around the content */
+}
+
+/* Specific styles for each option */
+#all {
+  background-color: #f2f2f2; /* Set the background color of the all option */
+}
+
+#failed {
+  background-color: #f9f9f9; /* Set the background color of the failed option */
+}
+
+#passed {
+  background-color: #f2f2f2; /* Set the background color of the passed option */
+}
+
+footer {
+  text-align: center; /* Center the text in the footer */
+}
+
+
+@media (max-width: 1300px) {
+  /* Add media queries for smaller screens */
+  #add-student ,form,#search-student,#search-student-byname,#add-course {
+    display: grid; /* Use grid layout */
+    grid-template-columns: 1fr; /* Set one column for the grid items */
+    text-align: center; /* Center the text */
+  }
+  input {
+    margin: 15px; /* Add some margin around the input elements */
+  }
+  header {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Arrange the items vertically */
+    align-items: center; /* Align the items horizontally */
+  }
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe; /* Set the background color of the modal content */
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px; /* Add some padding around the content */
+  border: 1px solid #888; /* Add a border to the modal content */
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+  table {
+    /* Enable horizontal scrolling for wider content */
+    overflow-x: auto;
+  }
+
+  table th,
+  table td
+    {
+    /* Wrap text within cells */
+    white-space: nowrap;
+  }
+
+  thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  display: block;
+}
+}

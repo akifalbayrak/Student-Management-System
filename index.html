@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="styles/styles.css" />
+  <script src="/scripts/script.js" defer></script>
   <title>Student Management System</title>
 </head>
 
@@ -17,20 +17,47 @@
   </header>
   <main>
     <section>
+      <!-- This section contains the forms and the table for searching students -->
       <article>
+        <!-- This article contains the form for searching students by ID -->
         <form id="search-student" action="">
           <input id="search-bar" type="number" min="0" placeholder="Student ID" />
           <input type="submit" value="Search" />
         </form>
       </article>
-
+      <article>
+        <!-- This article contains the form for searching students by name -->
+        <form id="search-student-byname" action="">
+          <input id="search-bar-byname" type="text" placeholder="Student Name" />
+          <input type="submit" value="Search" />
+        </form>
+      </article>
+      <article>
+        <!-- This article contains the table for displaying the student details -->
+        <h4>Student Table</h4>
+        <table id="course-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Course</th>
+              <th>Midterm</th>
+              <th>Final</th>
+              <th>Mark</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </article>
     </section>
     <section>
-
+      <!-- This section contains the form for adding a new course -->
       <article>
         <form id="add-course">
           <input type="text" placeholder="Course Name" id="course-name" />
           <div>
+            <!-- This div contains the radio buttons for choosing the base of the course -->
             <label for="base7">Base 7</label>
             <input type="radio" name="base" value="7" id="base7" checked />
           </div>
@@ -41,10 +68,9 @@
           <input type="submit" value="Save" />
         </form>
       </article>
-
-
     </section>
     <section>
+      <!-- This section contains the select element for choosing a course -->
       <article>
         <select name="courses" id="courses">
           <option id="empty-option">
@@ -54,6 +80,7 @@
       </article>
     </section>
     <section>
+      <!-- This section contains the form for adding a new student -->
       <article>
         <form id="add-student">
           <input id="ID" type="number" name="id" placeholder="Student ID" />
@@ -65,10 +92,12 @@
         </form>
       </article>
     </section>
+    
     <aside>
+      <!-- This section contains the course details and the tables -->
       <section>
-
         <article>
+          <!-- This article contains the select element for choosing the course details -->
           <label for="courses">Course Details</label>
           <select name="courses" id="course-details">
             <option value="all" id="all" selected>All Students</option>
@@ -76,8 +105,8 @@
             <option value="failed" id="failed">Failed Students</option>
           </select>
         </article>
-
         <article>
+          <!-- This article contains the table for the course student details -->
           <h4>Course Student Table</h4>
           <table id="course-student-detail">
             <thead>
@@ -96,6 +125,7 @@
           </table>
         </article>
         <article>
+          <!-- This article contains the table for the course details -->
           <h4>Course Detail Table</h4>
           <table id="course-detail">
             <thead>
@@ -112,29 +142,14 @@
             <tbody></tbody>
           </table>
         </article>
-        <article>
-          <h4>Student Table</h4>
-          <table id="course-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Course</th>
-                <th>Midterm</th>
-                <th>Final</th>
-                <th>Mark</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </article>
       </section>
-
     </aside>
   </main>
 
-  <footer>Student Management System 2023</footer>
+  <footer>
+    <!-- This is the footer of the page -->
+    Student Management System 2023
+  </footer>
 </body>
 
 </html>
