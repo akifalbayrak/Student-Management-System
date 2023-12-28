@@ -23,79 +23,318 @@ const courses_json = [
     },
 ];
 const students_json = [
-    { id: 1, name: "akif", surname: "albayrak", midterm: 10, final: 40 },
-    { id: 2, name: "mete", surname: "albayrak", midterm: 100, final: 30 },
-    { id: 3, name: "beyza", surname: "albayrak", midterm: 100, final: 100 },
-    { id: 4, name: "mehmet", surname: "albayrak", midterm: 65, final: 65 },
-    { id: 5, name: "ülkü", surname: "albayrak", midterm: 0, final: 0 },
-    { id: 6, name: "ahmet", surname: "albayrak", midterm: 92, final: 92 },
+    {
+        id: 1,
+        name: "Elif",
+        surname: "Acar",
+        midterm: 76,
+        final: 86,
+    },
+    {
+        id: 2,
+        name: "Emir",
+        surname: "Akgün",
+        midterm: 66,
+        final: 76,
+    },
+    {
+        id: 3,
+        name: "Aslı",
+        surname: "Arslan",
+        midterm: 96,
+        final: 96,
+    },
+    {
+        id: 4,
+        name: "Berk",
+        surname: "Aydemir",
+        midterm: 56,
+        final: 66,
+    },
+    {
+        id: 5,
+        name: "Ceren",
+        surname: "Bilgin",
+        midterm: 86,
+        final: 96,
+    },
+    {
+        id: 6,
+        name: "Deniz",
+        surname: "Can",
+        midterm: 46,
+        final: 56,
+    },
+    {
+        id: 7,
+        name: "Ece",
+        surname: "Çelik",
+        midterm: 81,
+        final: 91,
+    },
+    {
+        id: 8,
+        name: "Furkan",
+        surname: "Demirci",
+        midterm: 66,
+        final: 76,
+    },
+    {
+        id: 9,
+        name: "Gizem",
+        surname: "Doğan",
+        midterm: 51,
+        final: 61,
+    },
+    {
+        id: 10,
+        name: "Halil",
+        surname: "Erdoğan",
+        midterm: 91,
+        final: 91,
+    },
+    {
+        id: 11,
+        name: "İrem",
+        surname: "Güneş",
+        midterm: 71,
+        final: 81,
+    },
+    {
+        id: 12,
+        name: "Kaan",
+        surname: "İnce",
+        midterm: 81,
+        final: 91,
+    },
+    {
+        id: 13,
+        name: "Leyla",
+        surname: "Kara",
+        midterm: 61,
+        final: 71,
+    },
+    {
+        id: 14,
+        name: "Mert",
+        surname: "Koç",
+        midterm: 91,
+        final: 91,
+    },
+    {
+        id: 15,
+        name: "Nehir",
+        surname: "Öztürk",
+        midterm: 51,
+        final: 61,
+    },
+    {
+        id: 16,
+        name: "Oğuz",
+        surname: "Sarı",
+        midterm: 86,
+        final: 96,
+    },
+    {
+        id: 17,
+        name: "Pelin",
+        surname: "Şahin",
+        midterm: 46,
+        final: 56,
+    },
+    {
+        id: 18,
+        name: "Rüzgar",
+        surname: "Taş",
+        midterm: 81,
+        final: 91,
+    },
+    {
+        id: 19,
+        name: "Selin",
+        surname: "Uysal",
+        midterm: 76,
+        final: 86,
+    },
+    {
+        id: 20,
+        name: "Tolga",
+        surname: "Yalçın",
+        midterm: 66,
+        final: 76,
+    },
+    {
+        id: 21,
+        name: "Umut",
+        surname: "Yılmaz",
+        midterm: 96,
+        final: 96,
+    },
+    {
+        id: 22,
+        name: "Yağız",
+        surname: "Yüksel",
+        midterm: 56,
+        final: 66,
+    },
+    {
+        id: 23,
+        name: "Zehra",
+        surname: "Zorlu",
+        midterm: 86,
+        final: 96,
+    },
+    {
+        id: 24,
+        name: "Ada",
+        surname: "Aydın",
+        midterm: 46,
+        final: 56,
+    },
+    {
+        id: 25,
+        name: "Ali",
+        surname: "Başar",
+        midterm: 81,
+        final: 91,
+    },
+    {
+        id: 26,
+        name: "Buse",
+        surname: "Çetin",
+        midterm: 66,
+        final: 76,
+    },
+    {
+        id: 27,
+        name: "Can",
+        surname: "Duran",
+        midterm: 51,
+        final: 61,
+    },
+    {
+        id: 28,
+        name: "Damla",
+        surname: "Ergin",
+        midterm: 91,
+        final: 91,
+    },
+    {
+        id: 29,
+        name: "Emre",
+        surname: "Gök",
+        midterm: 71,
+        final: 81,
+    },
+    {
+        id: 30,
+        name: "Feyza",
+        surname: "Kılıç",
+        midterm: 81,
+        final: 91,
+    },
 ];
-let courseID = courses_json.length; //global course id
-let selectedStudent = null; //selected student for edit or delete
-let selectedCourse = null; //selected course from select input
-let foundStudent = null; //student that is found by search input
-let courseEdit = false; //course editing indicator
-let studentSearchForm = document.getElementById("search-student"); //student search form
-let studentNameSearchForm = document.getElementById("search-student-byname"); //student search form
-let studentSearchInput = document.getElementById("search-bar"); //student search input
-let studentNameSearchInput = document.getElementById("search-bar-byname"); //student search input
-let idInput = document.getElementById("ID"); //ID input
-let firstNameInput = document.getElementById("first-name"); //first name input
-let surnameInput = document.getElementById("surname"); //surname input
-let midtermInput = document.getElementById("midterm-score"); //midterm input
-let finalInput = document.getElementById("final-score"); //final input
-let courseNameInput = document.getElementById("course-name"); //course name input
-let base7Radio = document.getElementById("base7"); //base 7 radio button
-let base10Radio = document.getElementById("base10"); //base 10 radio button
-let courseSelector = document.getElementById("courses"); //course selector input
-const emptyCourseOption = document.getElementById("empty-option"); // empty course option
-const courseForm = document.getElementById("add-course"); //course adding table
-const studentForm = document.getElementById("add-student"); //student adding table
-const studentDetailsTable = document.getElementById("course-table"); //student details table
-const courseDetailsTable = document.getElementById("course-detail"); // course details table
+
+// Variable Declarations:
+
+// Track course ID generation
+let courseID = courses_json.length + 1;
+
+// Store selected student and course details
+let selectedStudent = null;
+let selectedCourse = null;
+
+// Track student search results
+let foundStudent = null;
+
+// Flag for course editing mode
+let courseEdit = false;
+
+// References to HTML elements:
+
+// Forms for student search
+let studentSearchForm = document.getElementById("search-student");
+let studentNameSearchForm = document.getElementById("search-student-byname");
+
+// Input fields for student search
+let studentSearchInput = document.getElementById("search-bar");
+let studentNameSearchInput = document.getElementById("search-bar-byname");
+
+// Element for displaying all student information
+const showAllstudents = document.getElementById("all-students");
+
+// Input fields for student and course data
+let idInput = document.getElementById("id");
+let nameInput = document.getElementById("name");
+let surnameInput = document.getElementById("surname");
+let midtermInput = document.getElementById("midterm-score");
+let finalInput = document.getElementById("final-score");
+let courseNameInput = document.getElementById("course-name");
+
+// Radio buttons for number base selection
+let base7Radio = document.getElementById("base7");
+let base10Radio = document.getElementById("base10");
+
+// Course selector element
+let courseSelector = document.getElementById("courses");
+
+// Empty option for course selector
+const emptyCourseOption = document.getElementById("empty-option");
+
+// Forms for adding courses and students
+const addCourseForm = document.getElementById("add-course");
+const addStudentForm = document.getElementById("add-student");
+
+// Tables to display student, course, and course-student details
+const studentDetailsTable = document.getElementById("students-table");
+const courseDetailsTable = document.getElementById("course-detail-table");
 const courseStudentDetailsTable = document.getElementById(
-    "course-student-detail"
+    "course-student-detail-table"
 );
-const courseDetailsSelect = document.getElementById("course-details"); // course detail selector
+
+// Element for selecting course details
+const courseDetailsSelect = document.getElementById("course-details");
+
+// Determine selected number base (default to base 10)
 const baseVal = parseInt(
-    // base point
     document.querySelector('input[name="base"]:checked')?.value || 10
 );
-let failedStudents = []; // failed students
-let passedStudents = []; // passed students
+// Arrays to store student objects based on their pass/fail status:
+let failedStudents = []; // Array to store students who have failed a course
+let passedStudents = []; // Array to store students who have passed a course
 
-const courses = []; // adding all courses here
-const students = []; // adding all students here
+// Arrays to store course and student objects:
+const courses = []; // Array to store course objects
+const students = []; // Array to store student objects
 
-// calculating mark based on 10 or 7
+// Function to calculate a student's overall mark and grade:
 const calculateMark = (midterm, final, base) => {
+    // Calculate the overall score based on midterm and final weights:
     const score = midterm * 0.4 + final * 0.6;
+
+    // Determine the grade based on the score and the specified number base:
     if (base == 10) {
+        // Grade cutoffs for base 10:
         if (score >= 90) {
             return "A";
-        }
-        if (score >= 80) {
+        } else if (score >= 80) {
             return "B";
-        }
-        if (score >= 70) {
+        } else if (score >= 70) {
             return "C";
-        }
-        if (score >= 60) {
+        } else if (score >= 60) {
             return "D";
         } else {
             return "F";
         }
     } else if (base == 7) {
+        // Grade cutoffs for base 7:
         if (score >= 93) {
             return "A";
-        }
-        if (score >= 85) {
+        } else if (score >= 85) {
             return "B";
-        }
-        if (score >= 77) {
+        } else if (score >= 77) {
             return "C";
-        }
-        if (score >= 70) {
+        } else if (score >= 70) {
             return "D";
         } else {
             return "F";
@@ -103,83 +342,100 @@ const calculateMark = (midterm, final, base) => {
     }
 };
 
-// course adding table
-courseForm.addEventListener("submit", (event) => {
+// Event listeners for course form:
+
+addCourseForm.addEventListener("submit", (event) => {
+    // Prevent default form submission
     event.preventDefault();
+    // If input is valid:
     if (isCourseFormValid()) {
-        if (courseEdit) {
-            // if course update handler function is triggered
-            updateCourse(); // update the course
-            updateCourseDetails();
-            updateCourseStudentDetails(); // update course details table
-            courseEdit = false; // set course editing state to false
+        // Check for duplicate course name:
+        if (findCourseByName(courseNameInput)) {
+            showAlert("This course already exists.");
         } else {
-            // if course edit is false, that means user is trying to add a new course
-            addCourse(); // add the new course
-            clearTable(studentDetailsTable); // clear course details table
-            clearTable(courseDetailsTable); // clear course details table
-            clearTable(courseStudentDetailsTable);
-            showAlert("Course succesfully added.");
+            // Handle course addition or editing:
+            if (courseEdit) {
+                updateCourse();
+                updateCourseDetails();
+                updateCourseStudentDetails();
+                courseEdit = false; // Exit editing mode
+            } else {
+                addCourse();
+                showAlert("Course successfully added.");
+            }
         }
     } else {
-        showAlert("Please fill all the neccessary fields");
+        showAlert("Please fill all the necessary fields");
     }
-    removeInput();
+    removeInput(); // Clear input fields
 });
 
-// student adding table
-studentForm.addEventListener("submit", (event) => {
+// Event listeners for student form:
+
+addStudentForm.addEventListener("submit", (event) => {
+    // Prevent default form submission
     event.preventDefault();
-    if (isStudentFormValid()) {
-        let student = findStudent(idInput.value);
-        if (selectedStudent === null) {
-            // if there is no selected student
-            if (student) {
-                // if the student already exists
-                if (studentTakingCourse(student.id)) {
-                    // if the student is already taking the selected course
-                    updateStudentMarks(student); // update the marks with the newly provided scores
-                    showAlert("Student marks updated.")
+
+    if (courseSelector.value != emptyCourseOption.value) {
+        // Check if the student form is valid
+        if (isStudentFormValid()) {
+            // Try to find an existing student with the entered ID
+            let student = findStudent(idInput.value);
+
+            // Handle different scenarios based on whether a student is selected and whether they already exist:
+            if (selectedStudent === null) {
+                // No student is currently selected:
+                if (student) {
+                    // Student exists:
+                    if (studentTakingCourse(student.id)) {
+                        // Student is already taking the course:
+                        updateStudentMarks(student); // Update their marks
+                        showAlert("Student marks updated.");
+                    } else {
+                        // Add the student to the course:
+                        addNewCourseToStudent(student);
+                        showAlert("Student added to course.");
+                        clearTable(studentDetailsTable);
+                    }
                 } else {
-                    // if the student isn't taking the selected course
-                    addNewCourseToStudent(student);
-                    showAlert("Student added to course.")
+                    // Student doesn't exist, create a new one:
+                    addStudent();
+                    showAlert("Student added to course.");
                 }
             } else {
-                // if there is no student found, that means user is trying to add a new student
-                addStudent(); // add new student
-                showAlert("Student added to course.")
+                // A student is selected, update their information:
+                updateStudent(selectedStudent);
+                showAlert("Student updated.");
+                selectedStudent = null; // Clear the selection
+                clearTable(studentDetailsTable); // Clear any student details display
             }
+
+            // Update course and course student details regardless of the scenario:
+            updateCourseDetails();
+            updateCourseStudentDetails();
         } else {
-            // if there is a student selected, that means user is trying to update the student
-            updateStudent(selectedStudent); // update the student
-            showAlert("Student updated.")
-            selectedStudent = null;
+            // Form is not valid, display an error message:
+            showAlert("Please fill all the necessary fields");
         }
-        updateCourseDetails(); // update course details
-        updateCourseStudentDetails(); // update course details table
+
+        // Clear input fields after submission:
+        removeInput();
     } else {
-        showAlert("Please fill all the neccessary fields");
+        showAlert("Please select course");
     }
-    removeInput(); // clear the inputs
 });
 
-// student search input
 studentSearchForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
+    clearTable(studentDetailsTable);
     if (studentSearchInput.value != "") {
-        foundStudent = findStudent(studentSearchInput.value); // find student by the provided input
+        foundStudent = findStudent(studentSearchInput.value);
         if (foundStudent) {
-            // if the student exists
             if (foundStudent.takingCourses.length > 0) {
-                // if the student exists and has taken at least one course
-                // studentDetailsTable.style.display="table"
-                viewStudent(foundStudent); // view student details
+                viewStudent(foundStudent);
                 clearTable(courseStudentDetailsTable);
-                clearTable(courseDetailsTable); // clear course details table
+                clearTable(courseDetailsTable);
             } else {
-                // if the student doesn't have any courses
                 showAlert("This student doesn't have any courses");
             }
         } else {
@@ -191,63 +447,105 @@ studentSearchForm.addEventListener("submit", (event) => {
     }
 });
 
-// student search input based on name
+// studentNameSearchForm.addEventListener("submit", (event) => {
+//     event.preventDefault();
+//     clearTable(studentDetailsTable);
+//     let studentsName = studentNameSearchInput.value.toLowerCase().trim();
+//     if (studentsName.length != 0) {
+//         let allstudents = findStudentName(studentsName);
+//         if (allstudents!=null) {
+//             for (const student of allstudents) {
+//                 foundStudent = student;
+
+//                 if (student.takingCourses.length > 0) {
+//                     viewStudent(student);
+//                     clearTable(courseStudentDetailsTable);
+//                     clearTable(courseDetailsTable);
+//                 } else {
+//                     showAlert("This student doesn't have any courses");
+//                 }
+//             }
+//         } else {
+//             showAlert(
+//                 "No student found with name " + studentNameSearchInput.value
+//             );
+//         }
+//         allstudents = "";
+//         console.log(allstudents)
+//         studentNameSearchInput.value = "";
+//     } else {
+//         showAlert("Enter valid name and surname");
+//     }
+// });
 studentNameSearchForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (studentNameSearchInput.value.toLowerCase().trim().length != 0) {
-        foundStudent = findStudentName(
-            studentNameSearchInput.value.toLowerCase().trim()
-        ); // find student by the provided input
-        if (foundStudent) {
-            // if the student exists
-            if (foundStudent.takingCourses.length > 0) {
-                // if the student exists and has taken at least one course
-                // studentDetailsTable.style.display = "table";
-                viewStudent(foundStudent); // view student details
-                clearTable(courseStudentDetailsTable);
-                clearTable(courseDetailsTable); // clear course details table
-            } else {
-                // if the student doesn't have any courses
-                showAlert("This student doesn't have any courses");
-            }
+    clearTable(studentDetailsTable);
+    let studentsName = studentNameSearchInput.value.toLowerCase().trim();
+    if (studentsName.length != 0) {
+        let allstudents = [];
+        allstudents = findStudentName(studentsName);
+        if (allstudents != null) {
+            allstudents.map((st) => {
+                // console.log(st)
+                if (st.takingCourses.length > 0) {
+                    viewStudent(st);
+                    clearTable(courseStudentDetailsTable);
+                    clearTable(courseDetailsTable);
+                } else {
+                    showAlert("This student doesn't have any courses");
+                }
+            });
         } else {
-            showAlert("No student found with name " + studentNameSearchInput.value);
+            showAlert(
+                "No student found with name " + studentNameSearchInput.value
+            );
         }
         studentNameSearchInput.value = "";
     } else {
         showAlert("Enter valid name and surname");
     }
 });
-
-// course select input
-courseSelector.addEventListener("change", (e) => {
-    selectedCourse = findCourseByName(e.target.value); // find the selected course by using the value of the select input
-    if (selectedCourse != null) {
-        // if user selected a course
-        updateCourseDetails();
-        updateCourseStudentDetails(); // update course details table
+// Displaying all students
+let toggleAllStudents = true;
+showAllstudents.addEventListener("click", () => {
+    if (toggleAllStudents) {
+        showAllstudents.innerText = "Close All Students";
+        clearTable(studentDetailsTable);
+        students.map((student) => {
+            viewStudent(student);
+        });
     } else {
-        // if user selected the empty option
-        clearTable(courseDetailsTable); // clear course details table
+        showAllstudents.innerText = "Show All Students";
+        clearTable(studentDetailsTable);
+    }
+
+    toggleAllStudents = !toggleAllStudents;
+});
+
+// Choosing course
+courseSelector.addEventListener("change", (e) => {
+    selectedCourse = findCourseByName(e.target.value);
+    if (selectedCourse != emptyCourseOption) {
+        updateCourseDetails();
+        updateCourseStudentDetails();
+    } else {
+        clearTable(studentDetailsTable);
     }
 });
 
-// id input
 idInput.addEventListener("change", (event) => {
     if (findStudent(event.target.valueAsNumber)) {
-        // if a student exists with the id provided in the ID input
-        let student = findStudent(event.target.valueAsNumber); // find the student with the provided id
-        (firstNameInput.value = student.firstName), // feed the name input
-            (surnameInput.value = student.surname); // feed the surname input
+        let student = findStudent(event.target.valueAsNumber);
+        (nameInput.value = student.name),
+            (surnameInput.value = student.surname);
     }
 });
 
-// course details select input
 courseDetailsSelect.addEventListener("change", () => {
     updateCourseStudentDetails();
+    updateCourseDetails();
 });
 
-// course creating class
 class Course {
     constructor(id, courseName, base) {
         this.id = id; // unique course id
@@ -266,6 +564,9 @@ const addCourse = () => {
     selectedCourse = newCourse; // update the selected course
     courseID++; // increse the course id
     courses.push(newCourse); // push the new course to the courses list
+    // Update course and course student details regardless of the scenario:
+    updateCourseDetails();
+    updateCourseStudentDetails();
 };
 courses_json.map((course) => {
     let newCourse = new Course(course.id, course.courseName, course.base);
@@ -274,9 +575,9 @@ courses_json.map((course) => {
 });
 // student creating class
 class Student {
-    constructor(id, firstName, surname, midterm, final) {
+    constructor(id, name, surname, midterm, final) {
         this.id = id; // unique student id
-        this.firstName = firstName; // student name
+        this.name = name; // student name
         this.surname = surname; // student surname
         this.takingCourses = [
             // courses that student is taking
@@ -292,10 +593,9 @@ class Student {
 
 // student adding function
 const addStudent = () => {
-    // if student doesn't exists
-    const newStudent = new Student( // create a new student with the data from the inputs
+    const newStudent = new Student(
         idInput.valueAsNumber,
-        firstNameInput.value,
+        nameInput.value,
         surnameInput.value,
         midtermInput.valueAsNumber,
         finalInput.valueAsNumber
@@ -316,7 +616,6 @@ const findCourse = (id) => {
 // find course by name
 const findCourseByName = (name) => {
     for (const course of courses) {
-        console.log(course.courseName.toLowerCase());
         if (course.courseName === name) {
             return course;
         }
@@ -333,22 +632,22 @@ const findStudent = (id) => {
 };
 // find student by name
 const findStudentName = (name) => {
+    let allstudents = [];
     for (const student of students) {
         if (
-            student.firstName.toLowerCase() +
-                " " +
-                student.surname.toLowerCase() ==
-            name
+            student.name.toLowerCase().startsWith(name) ||
+            student.surname.toLowerCase().startsWith(name)
         ) {
-            return student;
+            allstudents.push(student);
         }
     }
+    return allstudents;
 };
 
 // adding default students to table
 students_json.map((student) => {
     idInput.valueAsNumber = student.id;
-    firstNameInput.value = student.name;
+    nameInput.value = student.name;
     surnameInput.value = student.surname;
     midtermInput.valueAsNumber = student.midterm;
     finalInput.valueAsNumber = student.final;
@@ -356,22 +655,14 @@ students_json.map((student) => {
     selectedCourse = findCourse(1);
     addStudent();
     idInput.value = null;
-    firstNameInput.value = null;
+    nameInput.value = null;
     surnameInput.value = null;
     midtermInput.value = null;
     finalInput.value = null;
 });
 
 // adding student details table function
-const addStudentDetails = (
-    id,
-    firstName,
-    surname,
-    course,
-    midterm,
-    final,
-    mark
-) => {
+const addStudentDetails = (id, name, surname, course, midterm, final, mark) => {
     const tbody = studentDetailsTable.getElementsByTagName("tbody")[0];
     const row = tbody.insertRow(-1); // create a new row
     const idRow = row.insertCell(); // create new cells
@@ -382,7 +673,7 @@ const addStudentDetails = (
     const finalRow = row.insertCell();
     const markRow = row.insertCell();
     idRow.innerHTML = id;
-    nameRow.innerHTML = firstName;
+    nameRow.innerHTML = name;
     surnameRow.innerHTML = surname;
     courseRow.innerHTML = course;
     midtermRow.innerHTML = midterm;
@@ -391,7 +682,7 @@ const addStudentDetails = (
 };
 
 // add course details function
-const addCourseDetails = (id, cName, failed, passed, average) => {
+const addCourseDetails = (id, courseName, failed, passed, average) => {
     const tbody = courseDetailsTable.getElementsByTagName("tbody")[0];
     const row = tbody.insertRow(-1); // create a new row
     const idRow = row.insertCell(); // create new cellss
@@ -402,19 +693,19 @@ const addCourseDetails = (id, cName, failed, passed, average) => {
     const baseRow = row.insertCell();
     const actionRow = row.insertCell();
     idRow.innerHTML = id;
-    courseNameRow.innerHTML = cName;
+    courseNameRow.innerHTML = courseName;
     failedStudentRow.innerHTML = failed;
     passedStudentRow.innerHTML = passed;
     averageRow.innerHTML = average;
     baseRow.innerHTML = selectedCourse.base;
     actionRow.innerHTML =
-        "<button class='edit' onClick='courseEditHandler(this)'>Edit</button><button class='delete' onClick='courseDeleteHandler(this)'>Delete</button>";
+        "<button class='edit button' onClick='courseEditHandler(this)'>Edit</button><button class='delete button' onClick='courseDeleteHandler(this)'>Delete</button>";
 };
 
 // add course student details function
 const viewCourseStudentDetails = (
     id,
-    firstName,
+    name,
     surname,
     midterm,
     final,
@@ -432,14 +723,14 @@ const viewCourseStudentDetails = (
     const passRow = row.insertCell();
     const actionRow = row.insertCell();
     idRow.innerHTML = id;
-    nameRow.innerHTML = firstName;
+    nameRow.innerHTML = name;
     surnameRow.innerHTML = surname;
     midtermRow.innerHTML = midterm;
     finalRow.innerHTML = final;
     markRow.innerHTML = mark;
     passRow.innerHTML = pass;
     actionRow.innerHTML =
-        "<button class='edit' onClick='studentEditHandler(this)'>Edit </button><button class='delete' onClick='studentDeleteHandler(this)'>Delete</button>";
+        "<button class='edit button' onClick='studentEditHandler(this)'>Edit </button><button class='delete button' onClick='studentDeleteHandler(this)'>Delete</button>";
 };
 
 // Student Handling for Editing
@@ -447,10 +738,18 @@ const studentEditHandler = (tr) => {
     const selectedTr = tr.parentElement.parentElement; // selected row
     selectedStudent = tr.parentElement.parentElement.cells[0].innerHTML; // update the selected student id
     idInput.value = selectedTr.cells[0].innerHTML; // feed the input values with the selected student data
-    firstNameInput.value = selectedTr.cells[1].innerHTML;
+    nameInput.value = selectedTr.cells[1].innerHTML;
     surnameInput.value = selectedTr.cells[2].innerHTML;
     midtermInput.value = selectedTr.cells[3].innerHTML;
     finalInput.value = selectedTr.cells[4].innerHTML;
+    clearTable(studentDetailsTable);
+    updateCourseDetails();
+    updateCourseStudentDetails();
+    // Transition effect for smooth rotation
+    const transitionDuration = 5000; // Adjust duration as needed
+    addStudentForm.style.transition = `transform ${transitionDuration}ms ease-out-cubic`;
+    addStudentForm.style.transform = "rotateY(0deg)"; // Show form with smooth rotation
+    addStudentForm.scrollIntoView();
 };
 
 // Student Handling for Deleting
@@ -470,7 +769,15 @@ const studentDeleteHandler = (tr) => {
         }
     }
     selectedStudent = null; // set selected student to null
-    updateCourseStudentDetails(); // update course details table
+    // emptyCourseOption.selected = true;
+    clearTable(studentDetailsTable);
+    updateCourseDetails();
+    updateCourseStudentDetails();
+    // Transition effect for smooth rotation
+    const transitionDuration = 5000; // Adjust duration as needed
+    addStudentForm.style.transition = `transform ${transitionDuration}ms ease-out-cubic`;
+    addStudentForm.style.transform = "rotateY(0deg)"; // Show form with smooth rotation
+    addStudentForm.scrollIntoView();
 };
 
 // Course Handling for Editing
@@ -483,6 +790,14 @@ const courseEditHandler = (tr) => {
     } else if (selectedCourse.base == 10) {
         base10Radio.checked = true;
     }
+    clearTable(studentDetailsTable);
+    updateCourseDetails();
+    updateCourseStudentDetails();
+    // Transition effect for smooth rotation
+    const transitionDuration = 5000; // Adjust duration as needed
+    addCourseForm.style.transition = `transform ${transitionDuration}ms ease-out-cubic`;
+    addCourseForm.style.transform = "rotateY(0deg)"; // Show form with smooth rotation
+    addCourseForm.scrollIntoView();
 };
 
 // Course Handling for Deleting
@@ -501,15 +816,18 @@ const courseDeleteHandler = (tr) => {
         }
     }
     selectedCourse = null; // set selected coure to null
-    clearTable(courseDetailsTable); // clear course details table
     courseSelector.options[courseSelector.selectedIndex].remove(); // remove the course from the course selector
+    clearTable(studentDetailsTable);
+    clearTable(courseDetailsTable);
+    clearTable(courseStudentDetailsTable);
 };
 
 // Updating Student
 const updateStudent = (studentid) => {
     let student = findStudent(studentid); // find the student with the given id
-    student.firstName = firstNameInput.value; // update the first name
+    student.name = nameInput.value; // update the first name
     student.surname = surnameInput.value; // update the surname
+
     updateStudentMarks(student); // update student marks
     if (!findStudent(idInput.valueAsNumber)) {
         // if a student with a given id doesn't exists
@@ -523,6 +841,9 @@ const updateStudent = (studentid) => {
             }
             student.id = idInput.valueAsNumber; // update the student id
         }
+        clearTable(studentDetailsTable);
+        clearTable(courseDetailsTable);
+        clearTable(courseStudentDetailsTable);
     }
 };
 
@@ -570,6 +891,8 @@ const updateCourse = () => {
     selectedCourse.base = parseInt(
         document.querySelector('input[name="base"]:checked').value
     );
+    courseSelector.options[courseSelector.selectedIndex].innerText =
+        courseNameInput.value; // remove the course from the course selector
 };
 
 // Update Course Details
@@ -620,7 +943,7 @@ const updateCourseDetails = () => {
         }
     }
     average /= studentCount;
-    average = average.toFixed(2);
+    average = average.toFixed(1);
     if (average === "NaN") {
         average = 0;
     }
@@ -633,10 +956,9 @@ const updateCourseDetails = () => {
     );
 };
 
-// Updating Student Details Table
 const viewStudent = (foundStudent) => {
     let student = findStudent(foundStudent.id);
-    clearTable(studentDetailsTable);
+
     let courses = student.takingCourses;
     for (let i = 0; i <= courses.length - 1; i++) {
         let course_id = courses[i].id;
@@ -644,7 +966,7 @@ const viewStudent = (foundStudent) => {
         emptyCourseOption.selected = true;
         addStudentDetails(
             student.id,
-            student.firstName,
+            student.name,
             student.surname,
             currentCourse.courseName,
             courses[i].midterm,
@@ -652,9 +974,14 @@ const viewStudent = (foundStudent) => {
             courses[i].mark
         );
     }
-    const gpaRow = studentDetailsTable.insertRow(-1);
-    const gpaScore = gpaRow.insertCell(-1);
-    gpaScore.innerHTML = "GPA: " + calculateGpa(student);
+
+    // Check if GPA is a number before displaying it:
+    const gpa = calculateGpa(student);
+    if (!isNaN(gpa)) {
+        const gpaRow = studentDetailsTable.insertRow(-1);
+        const gpaScore = gpaRow.insertCell(-1);
+        gpaScore.innerHTML = "GPA: " + gpa;
+    }
 };
 
 // Update the Course Details Table with Students
@@ -674,7 +1001,7 @@ const updateCourseStudentDetails = () => {
             let studentDetails = findStudent(studentArray[i].id);
             viewCourseStudentDetails(
                 student.id,
-                studentDetails.firstName,
+                studentDetails.name,
                 studentDetails.surname,
                 student.midterm,
                 student.final,
@@ -693,7 +1020,7 @@ const isStudentFormValid = () => {
     if (
         selectedCourse != null &&
         idInput.value != "" &&
-        firstNameInput.value != "" &&
+        nameInput.value != "" &&
         surnameInput.value != "" &&
         midtermInput.value != "" &&
         finalInput.value != ""
@@ -728,7 +1055,7 @@ const studentTakingCourse = (id) => {
 // Clear all inputs after any Submit
 const removeInput = () => {
     idInput.value = "";
-    firstNameInput.value = "";
+    nameInput.value = "";
     surnameInput.value = "";
     midtermInput.value = "";
     finalInput.value = "";
@@ -756,25 +1083,141 @@ const calculateGpa = (student) => {
 };
 
 function showAlert(text) {
-    // Create alert
-    let alert = document.createElement("div");
-    alert.innerHTML = `${text}`;
-    alert.style.position = "fixed";
-    alert.style.left = "50%";
-    alert.style.top = "50%";
-    alert.style.transform = "translate(-50%, -50%)";
-    alert.style.background = "green";
-    alert.style.color = "white";
-    alert.style.padding = "30px";
-    alert.style.fontSize = "15px";
-    alert.style.borderRadius = "5px";
-    alert.style.zIndex = "1000";
-
-    // add alert to page
+    // Create the alert element with appropriate accessibility attributes
+    const alert = document.createElement("div");
+    alert.setAttribute("role", "alert");
+    alert.setAttribute("aria-live", "assertive");
+  
+    // Set alert content and styling
+    alert.textContent = text;
+    alert.style.cssText = `
+      position: fixed;
+      right:0;
+      top: 50%;
+      transform: translate(0%, -50%);
+      background-color: rgba(46, 204, 113, 0.95); /* Translucent green with subtle gradient */
+      color: #fff;
+      text-align: center;
+      font-family: sans-serif;
+      font-weight: bold;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Soft drop shadow */
+      z-index: 1000;
+      
+    `;
+  
+    // Add a close button to the alert
+    const closeBtn = document.createElement("span");
+    closeBtn.textContent = "×";
+    closeBtn.style.cssText = `
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 20px;
+      color: white;
+      transition: color 0.3s; // Transition for color
+    `;
+    // Add a hover effect to the close button
+    closeBtn.addEventListener("mouseover", function () {
+      this.style.color = "black";
+    });
+    closeBtn.addEventListener("mouseout", function () {
+      this.style.color = "white";
+    });
+    // Add a click event to the close button
+    closeBtn.addEventListener("click", function () {
+      this.parentElement.remove();
+    });
+    // Append the close button to the alert
+    alert.appendChild(closeBtn);
+  
+    // Add alert to the page and remove after 3 seconds
     document.body.appendChild(alert);
+    // Make the alert visible by changing its opacity
+    setTimeout(() => (alert.style.opacity = 1), 100);
+    // Make the alert invisible and remove it after 3 seconds
+    setTimeout(() => {
+      alert.style.opacity = 0;
+      setTimeout(() => alert.remove(), 500);
+    }, 3000);
+  }
+  
+  
 
-    // remove alert after 2 seconds
-    setTimeout(function () {
-        alert.remove();
-    }, 2000);
-}
+const switchIcon = document.getElementById("switch-icon-on");
+const hiddenElement = document.getElementById("switch-icon-off");
+let toggle = true;
+
+switchIcon.addEventListener("click", () => {
+    const body = document.querySelector("body");
+    const header = document.querySelector("header");
+    const articles = document.querySelectorAll("article");
+    const forms = document.querySelectorAll("form");
+    const inputs = document.querySelectorAll("input");
+    const buttons = document.querySelectorAll(".button");
+    const tables = document.querySelectorAll("table");
+    const thElements = document.querySelectorAll("th");
+    // Transition effect for the switch icon
+    const transitionDuration = 800; // Adjust duration as needed
+    switchIcon.style.transition = `transform ${transitionDuration}ms ease-in-out`;
+    if (toggle) {
+        switchIcon.style.transform = "rotate(180deg)"; // Rotate icon smoothly
+        // Apply dark mode classes with a slight delay
+        setTimeout(() => {
+            body.classList.add("dark-mode");
+            header.classList.add("dark-mode");
+            articles.forEach((article) => {
+                article.classList.add("dark-mode");
+            });
+            forms.forEach((form) => {
+                form.classList.add("dark-mode");
+            });
+            inputs.forEach((input) => {
+                input.classList.add("dark-mode");
+            });
+            buttons.forEach((button) => {
+                button.classList.add("dark-mode");
+            });
+            tables.forEach((table) => {
+                table.classList.add("dark-mode");
+            });
+            thElements.forEach((th) => {
+                th.classList.add("dark-mode");
+            });
+        }, transitionDuration / 2); // Apply classes after half the transition
+    } else {
+        switchIcon.style.transform = "rotate(0deg)"; // Rotate icon back smoothly
+
+        // Remove dark mode classes with a slight delay
+        setTimeout(() => {
+            body.classList.remove("dark-mode");
+            header.classList.remove("dark-mode");
+            articles.forEach((article) => {
+                article.classList.remove("dark-mode");
+            });
+            forms.forEach((form) => {
+                form.classList.remove("dark-mode");
+            });
+            inputs.forEach((input) => {
+                input.classList.remove("dark-mode");
+            });
+            buttons.forEach((button) => {
+                button.classList.remove("dark-mode");
+            });
+            tables.forEach((table) => {
+                table.classList.remove("dark-mode");
+            });
+            thElements.forEach((th) => {
+                th.classList.remove("dark-mode");
+            });
+        }, transitionDuration / 2); // Remove classes after half the transition
+    }
+
+    switchIcon.src = toggle
+        ? "assets/toggle-on-solid.svg"
+        : "assets/toggle-off-solid.svg";
+    toggle = !toggle;
+});

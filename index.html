@@ -12,6 +12,8 @@
 
 <body>
   <header>
+    <img src="assets/toggle-on-solid.svg" width="40px" id="switch-icon-on">
+
     <img src="assets/logob-removebg-preview.png" alt="" srcset="">
     <p>Student Management System</p>
   </header>
@@ -28,14 +30,15 @@
       <article>
         <!-- This article contains the form for searching students by name -->
         <form id="search-student-byname" action="">
-          <input id="search-bar-byname" type="text" placeholder="Student Name" />
+          <input id="search-bar-byname" type="text" placeholder="Student Name and Surname" />
           <input type="submit" value="Search" />
         </form>
       </article>
       <article>
+        <button type="button" id="all-students" class="button">Show All Students</button>
         <!-- This article contains the table for displaying the student details -->
         <h4>Student Table</h4>
-        <table id="course-table">
+        <table id="students-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -83,8 +86,8 @@
       <!-- This section contains the form for adding a new student -->
       <article>
         <form id="add-student">
-          <input id="ID" type="number" name="id" placeholder="Student ID" />
-          <input id="first-name" type="text" name="fName" placeholder="First Name" />
+          <input id="id" type="number" name="id" placeholder="Student ID" />
+          <input id="name" type="text" name="fName" placeholder="First Name" />
           <input id="surname" type="text" name="lName" placeholder="Last Name" />
           <input id="midterm-score" type="number" min="0" max="100" name="midterm" placeholder="Midterm" />
           <input id="final-score" type="number" min="0" max="100" name="final" placeholder="Final" />
@@ -92,7 +95,7 @@
         </form>
       </article>
     </section>
-    
+
     <aside>
       <!-- This section contains the course details and the tables -->
       <section>
@@ -108,7 +111,7 @@
         <article>
           <!-- This article contains the table for the course student details -->
           <h4>Course Student Table</h4>
-          <table id="course-student-detail">
+          <table id="course-student-detail-table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -127,7 +130,7 @@
         <article>
           <!-- This article contains the table for the course details -->
           <h4>Course Detail Table</h4>
-          <table id="course-detail">
+          <table id="course-detail-table">
             <thead>
               <tr>
                 <th>ID</th>
