@@ -253,7 +253,6 @@ let courseEdit = false;
 // References to HTML elements:
 
 // Forms for student search
-let studentSearchForm = document.getElementById("search-student");
 let studentNameSearchForm = document.getElementById("search-student-byname");
 
 // Input fields for student search
@@ -359,9 +358,14 @@ addCourseForm.addEventListener("submit", (event) => {
                 updateCourseDetails();
                 updateCourseStudentDetails();
                 courseEdit = false; // Exit editing mode
+                courseSelector.disabled = false;
             } else {
-                addCourse();
-                showAlert("Course successfully added.");
+                if(courseNameInput.value[0] !=(NaN)){
+                    addCourse();
+                    showAlert("Course successfully added.");
+                }else{
+                    showAlert("Course name can't starts with number")
+                }
             }
         }
     } else {
@@ -406,6 +410,7 @@ addStudentForm.addEventListener("submit", (event) => {
                 // A student is selected, update their information:
                 updateStudent(selectedStudent);
                 showAlert("Student updated.");
+                idInput.disabled = false;
                 selectedStudent = null; // Clear the selection
                 clearTable(studentDetailsTable); // Clear any student details display
             }
@@ -424,87 +429,63 @@ addStudentForm.addEventListener("submit", (event) => {
         showAlert("Please select course");
     }
 });
-
-studentSearchForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    clearTable(studentDetailsTable);
-    if (studentSearchInput.value != "") {
-        foundStudent = findStudent(studentSearchInput.value);
-        if (foundStudent) {
-            if (foundStudent.takingCourses.length > 0) {
-                viewStudent(foundStudent);
-                clearTable(courseStudentDetailsTable);
-                clearTable(courseDetailsTable);
-            } else {
-                showAlert("This student doesn't have any courses");
-            }
-        } else {
-            showAlert("No student found with id " + studentSearchInput.value);
-        }
-        studentSearchInput.value = "";
-    } else {
-        showAlert("Enter valid id");
-    }
-});
-
-// studentNameSearchForm.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     clearTable(studentDetailsTable);
-//     let studentsName = studentNameSearchInput.value.toLowerCase().trim();
-//     if (studentsName.length != 0) {
-//         let allstudents = findStudentName(studentsName);
-//         if (allstudents!=null) {
-//             for (const student of allstudents) {
-//                 foundStudent = student;
-
-//                 if (student.takingCourses.length > 0) {
-//                     viewStudent(student);
-//                     clearTable(courseStudentDetailsTable);
-//                     clearTable(courseDetailsTable);
-//                 } else {
-//                     showAlert("This student doesn't have any courses");
-//                 }
-//             }
-//         } else {
-//             showAlert(
-//                 "No student found with name " + studentNameSearchInput.value
-//             );
-//         }
-//         allstudents = "";
-//         console.log(allstudents)
-//         studentNameSearchInput.value = "";
-//     } else {
-//         showAlert("Enter valid name and surname");
-//     }
-// });
 studentNameSearchForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
     clearTable(studentDetailsTable);
+
     let studentsName = studentNameSearchInput.value.toLowerCase().trim();
-    if (studentsName.length != 0) {
-        let allstudents = [];
-        allstudents = findStudentName(studentsName);
-        if (allstudents != null) {
-            allstudents.map((st) => {
-                // console.log(st)
-                if (st.takingCourses.length > 0) {
-                    viewStudent(st);
+
+    // Check if the input is a number (assumed to be an ID)
+    if (!isNaN(studentsName)) {
+        // Use part 2 for ID search
+        if (studentsName != "") {
+            foundStudent = findStudent(studentsName);
+            if (foundStudent) {
+                if (foundStudent.takingCourses.length > 0) {
+                    viewStudent(foundStudent);
                     clearTable(courseStudentDetailsTable);
                     clearTable(courseDetailsTable);
                 } else {
                     showAlert("This student doesn't have any courses");
                 }
-            });
+            } else {
+                showAlert(
+                    "No student found with id " + studentSearchInput.value
+                );
+            }
+            studentSearchInput.value = "";
         } else {
-            showAlert(
-                "No student found with name " + studentNameSearchInput.value
-            );
+            showAlert("Enter valid id");
         }
-        studentNameSearchInput.value = "";
     } else {
-        showAlert("Enter valid name and surname");
+        // Use part 1 for name search
+        if (studentsName.length != 0) {
+            let allstudents = [];
+            allstudents = findStudentName(studentsName);
+            if (allstudents != null) {
+                allstudents.map((st) => {
+                    // console.log(st)
+                    if (st.takingCourses.length > 0) {
+                        viewStudent(st);
+                        clearTable(courseStudentDetailsTable);
+                        clearTable(courseDetailsTable);
+                    } else {
+                        showAlert("This student doesn't have any courses");
+                    }
+                });
+            } else {
+                showAlert(
+                    "No student found with name " + studentNameSearchInput.value
+                );
+            }
+            studentNameSearchInput.value = "";
+        } else {
+            showAlert("Enter valid name and surname");
+        }
     }
 });
+
 // Displaying all students
 let toggleAllStudents = true;
 showAllstudents.addEventListener("click", () => {
@@ -530,6 +511,7 @@ courseSelector.addEventListener("change", (e) => {
         updateCourseStudentDetails();
     } else {
         clearTable(studentDetailsTable);
+        clearTable(courseStudentDetailsTable);
     }
 });
 
@@ -538,6 +520,13 @@ idInput.addEventListener("change", (event) => {
         let student = findStudent(event.target.valueAsNumber);
         (nameInput.value = student.name),
             (surnameInput.value = student.surname);
+        document.getElementById("name").disabled = true;
+        document.getElementById("surname").disabled = true;
+    } else {
+        document.getElementById("name").disabled = false;
+        document.getElementById("surname").disabled = false;
+        nameInput.value = "";
+        surnameInput.value = "";
     }
 });
 
@@ -742,6 +731,7 @@ const studentEditHandler = (tr) => {
     surnameInput.value = selectedTr.cells[2].innerHTML;
     midtermInput.value = selectedTr.cells[3].innerHTML;
     finalInput.value = selectedTr.cells[4].innerHTML;
+    idInput.disabled = true;
     clearTable(studentDetailsTable);
     updateCourseDetails();
     updateCourseStudentDetails();
@@ -751,33 +741,39 @@ const studentEditHandler = (tr) => {
     addStudentForm.style.transform = "rotateY(0deg)"; // Show form with smooth rotation
     addStudentForm.scrollIntoView();
 };
-
-// Student Handling for Deleting
 const studentDeleteHandler = (tr) => {
     selectedStudent = tr.parentElement.parentElement.cells[0].innerHTML; // update the selected student id
-    const student = findStudent(selectedStudent); // find the selected student
-    for (let i = 0; i < students.length; i++) {
-        if (students[i] === student) {
-            students.splice(i, 1); // delete the selected student from students list
-        }
-    }
-    for (let i = 0; i < courses.length; i++) {
-        for (let j = 0; j < courses[i].students.length; j++) {
-            if (courses[i].students[j] == student.id) {
-                courses[i].students.splice(j, 1); // delete the selected student from courses
+
+    // Confirmation alert
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this student?"
+    );
+    if (confirmDelete) {
+        const student = findStudent(selectedStudent); // find the selected student
+        for (let i = 0; i < students.length; i++) {
+            if (students[i] === student) {
+                students.splice(i, 1); // delete the selected student from students list
             }
         }
+        for (let i = 0; i < courses.length; i++) {
+            for (let j = 0; j < courses[i].students.length; j++) {
+                if (courses[i].students[j] == student.id) {
+                    courses[i].students.splice(j, 1); // delete the selected student from courses
+                }
+            }
+        }
+        selectedStudent = null; // set selected student to null
+        // emptyCourseOption.selected = true;
+        clearTable(studentDetailsTable);
+        updateCourseDetails();
+        updateCourseStudentDetails();
+
+        // Transition effect for smooth rotation
+        const transitionDuration = 5000; // Adjust duration as needed
+        addStudentForm.style.transition = `transform ${transitionDuration}ms ease-out-cubic`;
+        addStudentForm.style.transform = "rotateY(0deg)"; // Show form with smooth rotation
+        addStudentForm.scrollIntoView();
     }
-    selectedStudent = null; // set selected student to null
-    // emptyCourseOption.selected = true;
-    clearTable(studentDetailsTable);
-    updateCourseDetails();
-    updateCourseStudentDetails();
-    // Transition effect for smooth rotation
-    const transitionDuration = 5000; // Adjust duration as needed
-    addStudentForm.style.transition = `transform ${transitionDuration}ms ease-out-cubic`;
-    addStudentForm.style.transform = "rotateY(0deg)"; // Show form with smooth rotation
-    addStudentForm.scrollIntoView();
 };
 
 // Course Handling for Editing
@@ -785,6 +781,9 @@ const courseEditHandler = (tr) => {
     courseEdit = true; // set the course editing indicator
     const selectedTr = tr.parentElement.parentElement; // selecred row
     courseNameInput.value = selectedTr.cells[1].innerHTML; // feed the input values with the selected course data
+    // Disable courseSelector for 5 seconds
+    courseSelector.disabled = true;
+
     if (selectedCourse.base == 7) {
         base7Radio.checked = true;
     } else if (selectedCourse.base == 10) {
@@ -799,27 +798,32 @@ const courseEditHandler = (tr) => {
     addCourseForm.style.transform = "rotateY(0deg)"; // Show form with smooth rotation
     addCourseForm.scrollIntoView();
 };
-
-// Course Handling for Deleting
 const courseDeleteHandler = (tr) => {
     selectedCourse = tr.parentElement.parentElement.cells[0].innerHTML; // select the course with the id
-    for (let i = 0; i < courses.length; i++) {
-        if (courses[i].id == selectedCourse) {
-            courses.splice(i, 1); // delete the course
-        }
-    }
-    for (let i = 0; i < students.length; i++) {
-        for (let j = 0; j < students[i].takingCourses.length; j++) {
-            if (students[i].takingCourses[j].id == selectedCourse) {
-                students[i].takingCourses.splice(j, 1); // delete the course details from the students
+
+    // Confirmation alert
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this course? This action cannot be undone."
+    );
+    if (confirmDelete) {
+        for (let i = 0; i < courses.length; i++) {
+            if (courses[i].id == selectedCourse) {
+                courses.splice(i, 1); // delete the course
             }
         }
+        for (let i = 0; i < students.length; i++) {
+            for (let j = 0; j < students[i].takingCourses.length; j++) {
+                if (students[i].takingCourses[j].id == selectedCourse) {
+                    students[i].takingCourses.splice(j, 1); // delete the course details from the students
+                }
+            }
+        }
+        selectedCourse = null; // set selected course to null
+        courseSelector.options[courseSelector.selectedIndex].remove(); // remove the course from the course selector
+        clearTable(studentDetailsTable);
+        clearTable(courseDetailsTable);
+        clearTable(courseStudentDetailsTable);
     }
-    selectedCourse = null; // set selected coure to null
-    courseSelector.options[courseSelector.selectedIndex].remove(); // remove the course from the course selector
-    clearTable(studentDetailsTable);
-    clearTable(courseDetailsTable);
-    clearTable(courseStudentDetailsTable);
 };
 
 // Updating Student
@@ -1087,7 +1091,7 @@ function showAlert(text) {
     const alert = document.createElement("div");
     alert.setAttribute("role", "alert");
     alert.setAttribute("aria-live", "assertive");
-  
+
     // Set alert content and styling
     alert.textContent = text;
     alert.style.cssText = `
@@ -1106,7 +1110,7 @@ function showAlert(text) {
       z-index: 1000;
       
     `;
-  
+
     // Add a close button to the alert
     const closeBtn = document.createElement("span");
     closeBtn.textContent = "×";
@@ -1122,30 +1126,28 @@ function showAlert(text) {
     `;
     // Add a hover effect to the close button
     closeBtn.addEventListener("mouseover", function () {
-      this.style.color = "black";
+        this.style.color = "black";
     });
     closeBtn.addEventListener("mouseout", function () {
-      this.style.color = "white";
+        this.style.color = "white";
     });
     // Add a click event to the close button
     closeBtn.addEventListener("click", function () {
-      this.parentElement.remove();
+        this.parentElement.remove();
     });
     // Append the close button to the alert
     alert.appendChild(closeBtn);
-  
+
     // Add alert to the page and remove after 3 seconds
     document.body.appendChild(alert);
     // Make the alert visible by changing its opacity
     setTimeout(() => (alert.style.opacity = 1), 100);
     // Make the alert invisible and remove it after 3 seconds
     setTimeout(() => {
-      alert.style.opacity = 0;
-      setTimeout(() => alert.remove(), 500);
+        alert.style.opacity = 0;
+        setTimeout(() => alert.remove(), 500);
     }, 3000);
-  }
-  
-  
+}
 
 const switchIcon = document.getElementById("switch-icon-on");
 const hiddenElement = document.getElementById("switch-icon-off");
@@ -1160,6 +1162,7 @@ switchIcon.addEventListener("click", () => {
     const buttons = document.querySelectorAll(".button");
     const tables = document.querySelectorAll("table");
     const thElements = document.querySelectorAll("th");
+    const scrollbars = document.querySelectorAll("::-webkit-scrollbar");
     // Transition effect for the switch icon
     const transitionDuration = 800; // Adjust duration as needed
     switchIcon.style.transition = `transform ${transitionDuration}ms ease-in-out`;
@@ -1169,6 +1172,9 @@ switchIcon.addEventListener("click", () => {
         setTimeout(() => {
             body.classList.add("dark-mode");
             header.classList.add("dark-mode");
+            scrollbars.forEach((scrollbar) => {
+                scrollbar.classList.add("dark-mode");
+            });
             articles.forEach((article) => {
                 article.classList.add("dark-mode");
             });
@@ -1195,6 +1201,9 @@ switchIcon.addEventListener("click", () => {
         setTimeout(() => {
             body.classList.remove("dark-mode");
             header.classList.remove("dark-mode");
+            scrollbars.forEach((scrollbar) => {
+                scrollbar.classList.remove("dark-mode");
+            });
             articles.forEach((article) => {
                 article.classList.remove("dark-mode");
             });

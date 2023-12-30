@@ -1,3 +1,74 @@
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-moz-scrollbar-track {
+    background: #f1f1f1;
+}
+::-ms-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #b7dbff;
+}
+::-moz-scrollbar-thumb {
+    background: #b7dbff;
+}
+::-ms-scrollbar-thumb {
+    background: #b7dbff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #7e96ae;
+}
+::-moz-scrollbar-thumb:hover {
+    background: #7e96ae;
+}
+::-ms-scrollbar-thumb:hover {
+    background: #7e96ae;
+}
+
+/* Track */
+.dark-mode::-webkit-scrollbar-track {
+    background: #222; /* Dark gray background for track */
+}
+.dark-mode::-moz-scrollbar-track {
+    background: #222;
+}
+.dark-mode::-ms-scrollbar-track {
+    background: #222;
+}
+
+/* Handle */
+.dark-mode::-webkit-scrollbar-thumb {
+    background: #555; /* Darker gray for handle */
+}
+.dark-mode::-moz-scrollbar-thumb {
+    background: #555;
+}
+.dark-mode::-ms-scrollbar-thumb {
+    background: #555;
+}
+
+/* Handle on hover */
+.dark-mode::-webkit-scrollbar-thumb:hover {
+    background: #333; /* Slightly darker gray on hover */
+}
+.dark-mode::-moz-scrollbar-thumb:hover {
+    background: #333;
+}
+.dark-mode::-ms-scrollbar-thumb:hover {
+    background: #333;
+}
+
 header {
     background-color: #fff4e0; /* Set the background color of the header */
     padding: 20px; /* Add some padding around the content */
@@ -24,7 +95,7 @@ article {
 }
 
 form {
-  padding: 20px 0;
+    padding: 20px 0;
     display: flex; /* Use flexbox layout */
     justify-content: space-between; /* Distribute the space evenly between the items */
     align-items: center; /* Align the items vertically */
@@ -37,7 +108,6 @@ form {
 .icon {
     height: 50px; /* Set the height of the icon */
 }
-
 
 #toggle-theme {
     background-color: #495057;
@@ -89,7 +159,7 @@ input[type="submit"],
 .delete,
 .button {
     /* background-color: #6c757d; Set the background color of the buttons */
-    background-color: #66aae6; 
+    background-color: #66aae6;
     color: #f8f9fa; /* Set the text color of the buttons */
     border: none; /* Remove the border of the buttons */
     padding: 15px 40px; /* Add some padding around the content */
@@ -100,11 +170,10 @@ input[type="submit"],
 
 input[type="submit"]:hover,
 .button:hover {
-    background-color: #ffffff; /* Change the background color of the buttons when hovered */
+    background-color: #f8f9fa; /* Change the background color of the buttons when hovered */
     transform: scale(1.1); /* Scale the element to 110% when hovered */
-    color: black;
-    border: solid 
-
+    color: #66aae6;
+    border: solid;
 }
 
 #courses {
@@ -168,7 +237,8 @@ tr:hover {
     background-color: #f9f9f9; /* Set the background color of the course student detail table */
 }
 
-#course-details,#courses {
+#course-details,
+#courses {
     width: 100%; /* Set the width of the select element */
     padding: 10px; /* Add some padding around the content */
     border: 1px solid #ddd; /* Add a border to the select element */
@@ -216,29 +286,6 @@ footer {
         flex-direction: column; /* Arrange the items vertically */
         align-items: center; /* Align the items horizontally */
     }
-}
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0, 0, 0); /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe; /* Set the background color of the modal content */
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px; /* Add some padding around the content */
-    border: 1px solid #888; /* Add a border to the modal content */
-    width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* Responsiveness for smaller screens */
@@ -310,4 +357,57 @@ th.dark-mode {
 }
 table.dark-mode tr:hover {
     background-color: #37474f; /* Darker table row hover background color */
+}
+
+/* Base styles for the modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.4
+    ); /* Semi-transparent black background */
+}
+
+/* Dark theme styles for the modal */
+.modal.dark-theme {
+    background-color: rgba(25, 25, 25, 0.9); /* Darker background */
+}
+
+.modal-content {
+    background-color: #fefefe; /* White background by default */
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Adjust content color for dark theme */
+.modal.dark-theme .modal-content {
+    background-color: #333; /* Dark background for content */
+    color: #fff; /* White text for contrast */
+}
+
+/* The close button is positioned on the top right corner of the modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* The close button changes color when hovered over */
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

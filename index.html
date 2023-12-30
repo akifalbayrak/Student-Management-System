@@ -13,24 +13,14 @@
 <body>
   <header>
     <img src="assets/toggle-on-solid.svg" width="40px" id="switch-icon-on">
-
     <img src="assets/logob-removebg-preview.png" alt="" srcset="">
     <p>Student Management System</p>
   </header>
   <main>
     <section>
-      <!-- This section contains the forms and the table for searching students -->
-      <article>
-        <!-- This article contains the form for searching students by ID -->
-        <form id="search-student" action="">
-          <input id="search-bar" type="number" min="0" placeholder="Student ID" />
-          <input type="submit" value="Search" />
-        </form>
-      </article>
-      <article>
-        <!-- This article contains the form for searching students by name -->
+        <!-- This article contains the form for searching students by name and id -->
         <form id="search-student-byname" action="">
-          <input id="search-bar-byname" type="text" placeholder="Student Name and Surname" />
+          <input id="search-bar-byname" type="text" placeholder="Enter Student Name or Id" />
           <input type="submit" value="Search" />
         </form>
       </article>
@@ -86,7 +76,7 @@
       <!-- This section contains the form for adding a new student -->
       <article>
         <form id="add-student">
-          <input id="id" type="number" name="id" placeholder="Student ID" />
+          <input id="id" type="number" name="id" placeholder="Student ID"/>
           <input id="name" type="text" name="fName" placeholder="First Name" />
           <input id="surname" type="text" name="lName" placeholder="Last Name" />
           <input id="midterm-score" type="number" min="0" max="100" name="midterm" placeholder="Midterm" />
