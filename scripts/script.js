@@ -1,213 +1,213 @@
-// //  Example courses
-// const courses_json = [
-//         {
-//             id: 1,
-//             courseName: "Database Management Systems",
-//             base: 7,
-//             students: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-//         },
-//         {
-//             id: 2,
-//             courseName: "Web Development and Programming",
-//             base: 7,
-//             students: [3, 2, 7],
-//         },
-//         {
-//             id: 3,
-//             courseName: "Computer Networks",
-//             base: 7,
-//             students: [1, 6],
-//         },
-//         {
-//             id: 4,
-//             courseName: "Natural Language Processing",
-//             base: 7,
-//             students: [5],
-//         },
-// ];
+//  Example courses
+const courses_json = [
+    {
+        id: 1,
+        courseName: "Database Management Systems",
+        base: 7,
+        students: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    },
+    {
+        id: 2,
+        courseName: "Web Development and Programming",
+        base: 7,
+        students: [3, 2, 7],
+    },
+    {
+        id: 3,
+        courseName: "Computer Networks",
+        base: 7,
+        students: [1, 6],
+    },
+    {
+        id: 4,
+        courseName: "Natural Language Processing",
+        base: 7,
+        students: [5],
+    },
+];
 
-// // Default Students
-// const students_json = [
-//         {
-//             id: 1,
-//             name: "ezel",
-//             surname: "Bayraktar",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 92,
-//                     final: 92,
-//                     mark: "B",
-//                 },
-//                 {
-//                     id: 3,
-//                     midterm: 70,
-//                     final: 70,
-//                     mark: "D",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 2,
-//             name: "Kenan",
-//             surname: "Birkan",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 95,
-//                     final: 95,
-//                     mark: "A",
-//                 },
-//                 {
-//                     id: 2,
-//                     midterm: 50,
-//                     final: 50,
-//                     mark: "F",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 3,
-//             name: "Kaya",
-//             surname: "Erk",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 50,
-//                     final: 50,
-//                     mark: "F",
-//                 },
-//                 {
-//                     id: 2,
-//                     midterm: 80,
-//                     final: 80,
-//                     mark: "C",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 4,
-//             name: "Eyşan",
-//             surname: "Tezcan",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 92,
-//                     final: 92,
-//                     mark: "B",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 5,
-//             name: "Cengiz",
-//             surname: "Atay",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 70,
-//                     final: 70,
-//                     mark: "D",
-//                 },
-//                 {
-//                     id: 4,
-//                     midterm: 89,
-//                     final: 83,
-//                     mark: "B",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 6,
-//             name: "ramiz",
-//             surname: "karaeski",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 65,
-//                     final: 65,
-//                     mark: "F",
-//                 },
-//                 {
-//                     id: 3,
-//                     midterm: 100,
-//                     final: 100,
-//                     mark: "A",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 7,
-//             name: "bahar",
-//             surname: "tezcan",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 69,
-//                     final: 69,
-//                     mark: "F",
-//                 },
-//                 {
-//                     id: 2,
-//                     midterm: 95,
-//                     final: 95,
-//                     mark: "A",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 8,
-//             name: "ömer",
-//             surname: "uçar",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 71,
-//                     final: 71,
-//                     mark: "D",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 9,
-//             name: "temmuz",
-//             surname: "assasin",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 79,
-//                     final: 79,
-//                     mark: "C",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 10,
-//             name: "tevfik",
-//             surname: "zaim",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 86,
-//                     final: 86,
-//                     mark: "B",
-//                 },
-//             ],
-//         },
-//         {
-//             id: 11,
-//             name: "şebo",
-//             surname: "zaim",
-//             takingCourses: [
-//                 {
-//                     id: 1,
-//                     midterm: 89,
-//                     final: 89,
-//                     mark: "B",
-//                 },
-//             ],
-//         },
-// ];
+// Default Students
+const students_json = [
+    {
+        id: 1,
+        name: "ezel",
+        surname: "Bayraktar",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 92,
+                final: 92,
+                mark: "B",
+            },
+            {
+                id: 3,
+                midterm: 70,
+                final: 70,
+                mark: "D",
+            },
+        ],
+    },
+    {
+        id: 2,
+        name: "Kenan",
+        surname: "Birkan",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 95,
+                final: 95,
+                mark: "A",
+            },
+            {
+                id: 2,
+                midterm: 50,
+                final: 50,
+                mark: "F",
+            },
+        ],
+    },
+    {
+        id: 3,
+        name: "Kaya",
+        surname: "Erk",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 50,
+                final: 50,
+                mark: "F",
+            },
+            {
+                id: 2,
+                midterm: 80,
+                final: 80,
+                mark: "C",
+            },
+        ],
+    },
+    {
+        id: 4,
+        name: "Eyşan",
+        surname: "Tezcan",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 92,
+                final: 92,
+                mark: "B",
+            },
+        ],
+    },
+    {
+        id: 5,
+        name: "Cengiz",
+        surname: "Atay",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 70,
+                final: 70,
+                mark: "D",
+            },
+            {
+                id: 4,
+                midterm: 89,
+                final: 83,
+                mark: "B",
+            },
+        ],
+    },
+    {
+        id: 6,
+        name: "ramiz",
+        surname: "karaeski",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 65,
+                final: 65,
+                mark: "F",
+            },
+            {
+                id: 3,
+                midterm: 100,
+                final: 100,
+                mark: "A",
+            },
+        ],
+    },
+    {
+        id: 7,
+        name: "bahar",
+        surname: "tezcan",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 69,
+                final: 69,
+                mark: "F",
+            },
+            {
+                id: 2,
+                midterm: 95,
+                final: 95,
+                mark: "A",
+            },
+        ],
+    },
+    {
+        id: 8,
+        name: "ömer",
+        surname: "uçar",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 71,
+                final: 71,
+                mark: "D",
+            },
+        ],
+    },
+    {
+        id: 9,
+        name: "temmuz",
+        surname: "assasin",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 79,
+                final: 79,
+                mark: "C",
+            },
+        ],
+    },
+    {
+        id: 10,
+        name: "tevfik",
+        surname: "zaim",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 86,
+                final: 86,
+                mark: "B",
+            },
+        ],
+    },
+    {
+        id: 11,
+        name: "şebo",
+        surname: "zaim",
+        takingCourses: [
+            {
+                id: 1,
+                midterm: 89,
+                final: 89,
+                mark: "B",
+            },
+        ],
+    },
+];
 
 // Variable Declarations:
 
@@ -686,7 +686,7 @@ const viewCourseStudentDetails = (
 // Student Handling for Editing
 const studentEditHandler = (tr) => {
     const selectedTr = tr.parentElement.parentElement; // selected row
-    selectedStudent = tr.parentElement.parentElement.cells[0].innerHTML; // update the selected student id
+    selectedStudent = tr.parentElement.parentElement.cells[0].innerHTML; // take the selected student id
     idInput.value = selectedTr.cells[0].innerHTML; // feed the input values with the selected student data
     nameInput.value = selectedTr.cells[1].innerHTML;
     surnameInput.value = selectedTr.cells[2].innerHTML;
@@ -706,8 +706,7 @@ const studentEditHandler = (tr) => {
     addStudentForm.scrollIntoView();
 };
 const studentDeleteHandler = (tr) => {
-    selectedStudent = tr.parentElement.parentElement.cells[0].innerHTML; // update the selected student id
-
+    selectedStudent = tr.parentElement.parentElement.cells[0].innerHTML; // delete the selected student id
     // Confirmation alert
     const confirmDelete = confirm(
         "Are you sure you want to delete this student?"
@@ -744,7 +743,7 @@ const studentDeleteHandler = (tr) => {
 
 // Course Handling for Editing
 const courseEditHandler = (tr) => {
-    courseEdit = true; // set the course editing indicator
+    courseEdit = true; // take the course editing indicator
     const selectedTr = tr.parentElement.parentElement; // selecred row
     courseNameInput.value = selectedTr.cells[1].innerHTML; // feed the input values with the selected course data
     // Disable courseSelector for 5 seconds
@@ -768,6 +767,7 @@ const courseEditHandler = (tr) => {
 // Course Handling for Deleting
 const courseDeleteHandler = (tr) => {
     selectedCourse = tr.parentElement.parentElement.cells[0].innerHTML; // select the course with the id
+    console.log(selectedCourse)
 
     // Confirmation alert
     const confirmDelete = confirm(
@@ -1229,12 +1229,13 @@ function saveStudents() {
 }
 
 function loadCourses() {
-    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    const courses = JSON.parse(localStorage.getItem("courses"));
     return courses;
 }
 
 function loadStudents() {
-    const students = JSON.parse(localStorage.getItem("students")) || [];
+    const students =
+        JSON.parse(localStorage.getItem("students"));
     return students;
 }
 // Load courses and students on page load
@@ -1248,6 +1249,12 @@ window.addEventListener("load", () => {
             : "assets/toggle-off-solid.svg";
     }
     let tempCourses = loadCourses();
+    let tempStudents = loadStudents();
+    if (!tempCourses && !tempStudents) {
+        tempCourses = courses_json;
+        tempStudents = students_json;
+        console.log(111);
+    }
     tempCourses.map((course) => {
         let newCourse = new Course(courseID, course.courseName, course.base);
         courseID++; // increse the course id
@@ -1256,7 +1263,6 @@ window.addEventListener("load", () => {
     });
 
     // // adding default students to table
-    let tempStudents = loadStudents();
     tempStudents.map((student) => {
         student.takingCourses.map((c) => {
             courseSelector.value = findCourse(c.id).courseName;
